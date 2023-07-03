@@ -2,7 +2,7 @@ if __name__ == '__main__':
     import pandas as pd
     import yfinance as yf
 
-    tickers_df = pd.read_csv('./data/indices.csv')
+    tickers_df = pd.read_csv('../data/indices.csv')
     indices = tickers_df.ticker.unique()
     data = yf.download(" ".join(indices),
                     start="2018-01-01", end="2023-01-01",
@@ -11,4 +11,4 @@ if __name__ == '__main__':
                     repair = True
     )
 
-    data['Close'].to_csv('./data/raw_data.csv')
+    data['Close'].to_csv('../data/raw_data.csv')

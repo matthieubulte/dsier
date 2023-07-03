@@ -2,8 +2,8 @@ if __name__ == '__main__':
     import pandas as pd
     import numpy as np
 
-    tickers_df = pd.read_csv('./data/indices.csv')
-    df = pd.read_csv('./data/raw_data.csv')
+    tickers_df = pd.read_csv('../data/indices.csv')
+    df = pd.read_csv('../data/raw_data.csv')
 
     # Remove days with NAs and log how many are missing
     is_na = df.isna().any(axis=1)
@@ -17,4 +17,4 @@ if __name__ == '__main__':
     corr_mats = np.r_[corr_df.values.tolist()] # T x n_indices x n_indices
 
     # Save the resulting matrix time series
-    np.save("./data/matrices_ts.npy", corr_mats)
+    np.save("../data/matrices_ts.npy", corr_mats)
