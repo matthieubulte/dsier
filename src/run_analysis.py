@@ -26,6 +26,7 @@ if __name__ == '__main__':
         return tgrid[np.argmin(errs)]
 
     mats = np.load("./data/matrices_ts.npy")
+    N = mats.shape[0]
 
     print("#" * 20)
     print("Bootstraping distribution of hat alpha under H0")
@@ -38,8 +39,23 @@ if __name__ == '__main__':
 
     print("#" * 20)
     print("Plotting results")
-    plt.axvline(est, color='yellow', label=f"hat alpha: {est:.2f}")
-    plt.axvline(q_95, color='red', label=f"q_95: {q_95:.2f}")
-    plt.hist(alpha_hats, density=True, bins=20, label="hat alpha under H0")
+    
+    # Eigenvals
+    evals = np.zeros((N, M.dim))
+    for i in range(N):
+        evals[i,:] = np.sort(np.linalg.eigvals(mats[i,:,:]))
+
+    plt.plot(np.arange(N), np.log10(evals[:,0]), color='black', label=r'$\log_{10}(\lambda_{it})$')
+    for i in range(1,M.dim):
+        plt.plot(np.arange(N), np.log10(evals[:,i]), color='black')
+    plt.legend()
+    plt.savefig('./output/timeseries.pdf')
+
+    # Alpha
+    plt.clf()
+    plt.axvline(est, color='black', label=f"alpha; {est:.2f}")
+    plt.axvline(q_95, color='black', linestyle='--', label=f"q_95: {q_95:.2f}")
+    plt.hist(alpha_hats, color='black', alpha=0.5, density=True,bins=20)
     plt.legend()
     plt.savefig('./output/result.pdf')
+
