@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
-import sys; sys.path.append('/Users/matthieubulte/Documents/university/phd/pyfrechet') 
 from pyfrechet.metric_spaces import MetricData, CorrFrobenius
 
 M = CorrFrobenius(dim=10)
