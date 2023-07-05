@@ -1,3 +1,4 @@
 numpy==1.23.5
 pandas==1.5.3
 yfinance==0.2.22
+pyfrechet @  git+https://github.com/matthieubulte/pyfrechet.git
