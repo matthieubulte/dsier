@@ -7,4 +7,12 @@ The list of countries and indices can be found under `data/indices.csv`. Due to 
 ## Requirements
 
 - Python 3.9.16
-- See `requirements.txt`
+- Dependencies can be found in `requirements.txt` and installed with `pip install -r requirements.txt` in your environment
+
+## Running the analysis
+
+To reproduce the results used in the final presentation, you can run the following scripts in the order in which they are presented:
+1. `src/fetch_raw_data.py` will fetch the raw data from yahoo finance into `data/raw_data.csv`
+2. `src/prepare_data.py` will transform the raw yahoo finance data into a monthly time series of correlation matrices saved in `data/matrices_ts.npy`
+3. `src/run_analysis.py` will run the statistical method and put related plots in `output/`
+Alternatively, you can just run `make` which will install dependencies and run the scripts.
